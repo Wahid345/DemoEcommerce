@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  th:replace="base::layout(~{::section})">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+
+</head>
+<body>
+<section>
+  <div class="container-fluid">
+    <a th:href="@{/admin/products/add}" style="..." class="btn btn-primary"> Add Products</a>
+    <table class="table">
+      <thead class="thead-light">
+      <tr>
+        <th scope="col">SN</th>
+        <th scope="col">Product Name</th>
+        <th scope="col">Category</th>
+        <th scope="col">Preview</th>
+        <th scope="col">Delete</th>
+        <th scope="col">Update</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="product, iStat : ${products}">
+        <th scope="row" th:text="${iStat.index+1}">1</th>
+        <td th:text="${product.name}">cake</td>
+        <td th:text="${product.category.name}"></td>
+        <td><img src="" height="100px" width="100px" th:src="@{${'/ProductImages/' + ProductDTO.imageName}}"></td>
+        <td ><a href="" th:href="@{/admin/product/delete/{id}(id=${category.id})}" class="btn btn-danger">Delete</a></td>
+        <td><a href="" th:href="@{/admin/product/update/{id}(id=${category.id})}" class="btn btn-warning">Update</a></td>
+
+      </tr>
+
+      </tbody>
+
+
+    </table>
+  </div>
+
+</section>
+
+
+
+
+</body>
+</html>

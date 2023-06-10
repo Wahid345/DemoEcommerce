@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  th:replace="base::layout(~{::section})">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+
+</head>
+<body>
+<section>
+  <div class="container">
+
+
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 offset-md-3">
+            <div class="card">
+              <div class="card-header text-center fs-4">Add products</div>
+              <form th:action="@{/admin/products/add}" method="post" th:object="${ProductDTO}" enctype="multipart/form-data">
+
+                  <input type="hidden" name="id" th:field="*{id}">
+                  <div class="form-group">
+                    <lebel for="name">Name</lebel>
+                    <label for="name"><input type="text" class="form-control" required th:field="*{name}" name="name" id="name" placeholder="Enter name"></label>
+                  </div>
+                <div class="form-group">
+                  <lebel for="category">Select Category</lebel>
+                  <select class="form-select" th:field="*{categoryId}">
+                    <option th:each="category :${categories}"
+                            th:value="${category.id}"
+                            th:text="${category.name}"
+                    >select categories
+                    </option>
+                  </select>
+
+                  <lebel for="price">Price</lebel>
+                  <input type="number" class="form-control" required th:field="*{price}" name="price" id="price"
+                         placeholder="Enter price">
+                </div>
+                <div class="form-group">
+                    <lebel for="weight">Weight in grams</lebel>
+                    <input type="number" class="form-control" required th:field="*{weight}" name="weight" id="weight" placeholder="Enter product weight">
+                  </div>
+                  <div class="form-group">
+                    <lebel for="description">Product Description</lebel>
+                    <textarea class="form-control" rows="5" th:field="*{description}" name="description" id="description"> </textarea>
+                  </div>
+                  <div class="col-sm-4">
+                    <p>product Image</p>
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" name="ProductImages" accept="image/jpeg , image/png , image/jpg" id="ProductImages">
+                      <lebel class="custom-file-lebel" for="productImage">Choose File</lebel>
+                    </div>
+                    <div class="form-group">
+                      <img src="#" id="imgPreview" height="100px" width="100px" th:src="@{${'static/ProductImages/' + ProductDTO.imageName}}" style="...">
+                    </div>
+
+                    <input type="hidden" name="imgName" th:value="${ProductDTO.imageName}">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+
+
+              </form>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+  </div>
+
+  <script>
+    function readURL(input){
+      if(input.files && input.files[0]){
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('#imgPreview').attr('src', e.target.result).width(100).height(100);
+        }
+        reader.readAsDataURL(input.files[0])
+      }
+    }
+    $('#ProductImages').change(function () {
+      readURL(this);
+    });
+    $(".custom-file-input").on("change",function () {
+      var fileName = $(this).val().split("\\").pop();
+      $(this).siblings(".custom-file-lebel").addClass("selected").html(fileName);
+    });
+  </script>
+
+</section>
+
+
+
+</body>
+</html>

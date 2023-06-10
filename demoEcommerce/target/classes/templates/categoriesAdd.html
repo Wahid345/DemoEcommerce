@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  th:replace="base::layout(~{::section})">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+
+</head>
+
+<body>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="card">
+          <div class="card-header text-center fs-4">Add Categories</div>
+          <div class="card-body">
+            <form th:action="@{/admin/categories/add}" method="post" th:object="${category}">
+              <div class="mb-3">
+                <label >Categories</label>
+                <input type="hidden" name="Id" th:field="*{id}">
+
+                <input type="text" name="Name" class="form-control" required th:field="*{name}">
+              </div>
+
+              <div>
+                <button class="btn btn-primary col-md-4">Add Category</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  </div>
+
+
+</section>
+
+
+
+
+</body>
+</html>

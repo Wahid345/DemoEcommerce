@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  th:replace="base::layout(~{::section})">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+
+</head>
+<body>
+<section>
+
+  <div class="container" >
+    <div class=" shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+      <h1 class="text-center">Welcome back, Admin</h1>
+      <p class="text-center">Easily manage your data from this admin cms</p>
+    </div>
+
+  </div>
+
+  <div class="container ">
+    <div class="row gx-3">
+      <div class=" col-3">
+        <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+          <h4>Categories</h4>
+          <p>manage the categories here.</p>
+          <a href="#" th:href="@{/admin/categories}" class="btn btn-primary" tabindex="-1" role="button" >manage</a>
+        </div>
+      </div>
+      <div class=" col-3">
+        <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+          <h4>Products</h4>
+          <p>manage all the products here.</p>
+          <a href="#" th:href="@{/admin/products}" class="btn btn-primary " tabindex="-1" role="button" >manage</a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>
